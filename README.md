@@ -60,7 +60,7 @@ inturkey/
 4. Напишите боту `/start` в личные сообщения
 5. Откройте в браузере:
    ```
-   https://api.telegram.org/bot<ВАШ_ТОКЕН>/getUpdates
+   https://api.telegram.org/bot8223979672:AAHpC_MzpjUWHoC6BW0hlF0xaKYdeiR8mXU/getUpdates
    ```
 6. Найдите в ответе `"chat":{"id": XXXXXXXX}` — это ваш **Chat ID**
 
@@ -95,7 +95,7 @@ docker compose version
 sudo apt install -y git
 
 # Перелогиньтесь для применения группы docker
-exit
+
 # ...зайдите заново
 ```
 
@@ -127,7 +127,7 @@ TELEGRAM_CHAT_ID=123456789
 chmod +x scripts/*.sh
 
 # Запустите получение SSL-сертификата
-./scripts/init-ssl.sh your-domain.ru your@email.com
+./scripts/init-ssl.sh in-turkey.ru osiov25@yandex.ru
 ```
 
 Скрипт автоматически:
