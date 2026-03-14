@@ -31,7 +31,7 @@ services:
       - "443:443"
     volumes:
       - ./nginx/default.conf.template:/etc/nginx/templates/default.conf.template:ro
-      - certbot-webroot:/var/www/certbot:ro
+      - certbot-webroot:/var/www/certbot
       - certbot-certs:/etc/letsencrypt:ro
     environment:
       - DOMAIN=${DOMAIN}

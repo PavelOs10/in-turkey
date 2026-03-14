@@ -23,6 +23,15 @@ docker compose -f docker-compose.init-ssl.yml up -d
 # Ждём пока nginx стартанёт
 sleep 5
 
+# Проверяем что nginx отвечает
+echo "   Проверяю что nginx отвечает..."
+docker compose -f docker-compose.init-ssl.yml exec nginx nginx -T 2>/dev/null | head -5 || true
+
+# Создаём тестовый файл для проверки
+docker compose -f docker-compose.init-ssl.yml exec nginx sh -c "mkdir -p /var/www/certbot/.well-known/acme-challenge && echo 'test' > /var/www/certbot/.well-known/acme-challenge/test"
+echo "   Тестовый файл создан. Проверьте: http://$DOMAIN/.well-known/acme-challenge/test"
+sleep 2
+
 # 2. Получаем сертификат
 echo "2️⃣  Запрашиваю сертификат у Let's Encrypt..."
 docker compose -f docker-compose.init-ssl.yml run --rm certbot certonly \
