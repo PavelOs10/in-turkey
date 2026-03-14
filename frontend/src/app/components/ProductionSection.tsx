@@ -25,7 +25,7 @@ const capabilities = [
 
 export function ProductionSection() {
   return (
-    <section className="py-24 bg-gray-50">
+    <section id="production" className="py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
         <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">

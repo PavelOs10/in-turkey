@@ -49,9 +49,8 @@ export function ContactSection() {
 
             <div className="space-y-6">
               {[
-                { icon: "💬", label: "WhatsApp", value: "+90 XXX XXX XXXX", href: "#" },
-                { icon: "✈️", label: "Telegram", value: "@inturkey_knitwear", href: "#" },
-                { icon: "📧", label: "Email", value: "info@inturkey.com", href: "mailto:info@inturkey.com" },
+                { icon: "💬", label: "WhatsApp", value: "+84 34 227 8161", href: "https://wa.me/84342278161" },
+                { icon: "📧", label: "Email", value: "inturkeyofficial@mail.com", href: "mailto:inturkeyofficial@mail.com" },
               ].map((contact) => (
                 <a
                   key={contact.label}

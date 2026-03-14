@@ -18,14 +18,11 @@ export function FooterSection() {
           <div>
             <h4 className="text-gray-300 text-sm tracking-widest uppercase mb-5">Контакты</h4>
             <div className="space-y-3">
-              <a href="#" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors text-sm">
-                <span className="text-lg">💬</span> WhatsApp
+              <a href="https://wa.me/84342278161" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors text-sm">
+                <span className="text-lg">💬</span> +84 34 227 8161
               </a>
-              <a href="#" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors text-sm">
-                <span className="text-lg">✈️</span> Telegram
-              </a>
-              <a href="mailto:info@inturkey.com" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors text-sm">
-                <span className="text-lg">📧</span> info@inturkey.com
+              <a href="mailto:inturkeyofficial@mail.com" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors text-sm">
+                <span className="text-lg">📧</span> inturkeyofficial@mail.com
               </a>
             </div>
           </div>
