@@ -26,6 +26,7 @@ services:
       - certbot-webroot:/var/www/certbot
     environment:
       - DOMAIN=${DOMAIN}
+      - NGINX_ENVSUBST_FILTER=DOMAIN
     depends_on:
       - frontend
       - backend

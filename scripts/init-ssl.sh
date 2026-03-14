@@ -23,14 +23,30 @@ docker compose -f docker-compose.init-ssl.yml up -d
 # Ждём пока nginx стартанёт
 sleep 5
 
-# Проверяем что nginx отвечает
-echo "   Проверяю что nginx отвечает..."
-docker compose -f docker-compose.init-ssl.yml exec nginx nginx -T 2>/dev/null | head -5 || true
+# Проверяем сгенерированный конфиг nginx
+echo "   Проверяю конфиг nginx..."
+docker compose -f docker-compose.init-ssl.yml exec nginx cat /etc/nginx/conf.d/default.conf
+echo ""
 
-# Создаём тестовый файл для проверки
-docker compose -f docker-compose.init-ssl.yml exec nginx sh -c "mkdir -p /var/www/certbot/.well-known/acme-challenge && echo 'test' > /var/www/certbot/.well-known/acme-challenge/test"
-echo "   Тестовый файл создан. Проверьте: http://$DOMAIN/.well-known/acme-challenge/test"
-sleep 2
+# Создаём тестовый файл и проверяем доступ
+docker compose -f docker-compose.init-ssl.yml exec nginx sh -c "mkdir -p /var/www/certbot/.well-known/acme-challenge && echo 'test-ok' > /var/www/certbot/.well-known/acme-challenge/test"
+echo "   Тестовый файл создан. Проверяю через curl..."
+sleep 1
+
+TEST_RESULT=$(curl -s -o /dev/null -w "%{http_code}" "http://$DOMAIN/.well-known/acme-challenge/test" || echo "000")
+if [ "$TEST_RESULT" = "200" ]; then
+  echo "   ✅ ACME challenge доступен (HTTP 200)"
+else
+  echo "   ❌ ACME challenge НЕ доступен (HTTP $TEST_RESULT)"
+  echo "   Попробую через localhost..."
+  docker compose -f docker-compose.init-ssl.yml exec nginx curl -s http://localhost/.well-known/acme-challenge/test || echo "   Тоже не работает"
+  echo ""
+  echo "   Проверяю, есть ли файл в volume..."
+  docker compose -f docker-compose.init-ssl.yml exec nginx ls -la /var/www/certbot/.well-known/acme-challenge/ || true
+  echo ""
+  echo "   ⚠️  Что-то не так с nginx конфигом. Прервано."
+  exit 1
+fi
 
 # 2. Получаем сертификат
 echo "2️⃣  Запрашиваю сертификат у Let's Encrypt..."
