@@ -5,7 +5,7 @@ import { AdvantagesSection } from "./components/AdvantagesSection";
 import { ProductionSection } from "./components/ProductionSection";
 import { TopModelsSection } from "./components/TopModelsSection";
 import { PriceSection } from "./components/PriceSection";
-import { PortfolioSection } from "./components/PortfolioSection";
+
 import { SampleSection } from "./components/SampleSection";
 import { SpecialOfferSection } from "./components/SpecialOfferSection";
 import { ContactSection } from "./components/ContactSection";
@@ -31,16 +31,16 @@ export default function App() {
         {/* 4. Производственные возможности */}
         <ProductionSection />
 
-        {/* 5. Топ-модели — фото 21–25, 31–35 */}
-        <TopModelsSection />
+        {/* 5. Топ-модели */}
+        <section id="portfolio">
+          <TopModelsSection />
+        </section>
 
         {/* 6. Сравнение цен */}
         <section id="pricing">
           <PriceSection />
         </section>
 
-        {/* 7. Портфолио — фото 41–65 */}
-        <PortfolioSection />
 
         {/* 8. Разработка образца */}
         <SampleSection />
